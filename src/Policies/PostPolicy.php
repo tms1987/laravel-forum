@@ -10,7 +10,8 @@ class PostPolicy
     public function edit($user, Post $post): bool
     {
 
-      if ($post->relations()->author()->abilities()->contains('administrate')) {
+      //Only admins can edit admins posts
+      if ($post->author()->abilities()->contains('administrate') && !($user->abilities()->contains('administrate')) {
         return false;
       }
 
