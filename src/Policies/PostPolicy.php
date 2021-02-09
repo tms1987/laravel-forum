@@ -9,6 +9,9 @@ class PostPolicy
 {
     public function edit($user, Post $post): bool
     {
+
+ddd($post);
+
       if ($user->abilities()->contains('edit_forum')) { return true;}
         return $user->getKey() === $post->author_id;
     }
