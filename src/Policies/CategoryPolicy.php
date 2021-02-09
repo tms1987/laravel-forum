@@ -26,11 +26,19 @@ class CategoryPolicy
 
     public function deleteThreads($user, Category $category): bool
     {
+      if (str_contains($category->title,'News') || str_contains($category->title,'Neuigkeiten'))
+      {
+        return $user->abilities()->contains('administrate');
+      }
         return $user->abilities()->contains('edit_forum');
     }
 
     public function restoreThreads($user, Category $category): bool
     {
+      if (str_contains($category->title,'News') || str_contains($category->title,'Neuigkeiten'))
+      {
+        return $user->abilities()->contains('administrate');
+      }
         return $user->abilities()->contains('edit_forum');
     }
 
@@ -41,27 +49,43 @@ class CategoryPolicy
 
     public function moveThreadsFrom($user, Category $category): bool
     {
+      if (str_contains($category->title,'News') || str_contains($category->title,'Neuigkeiten'))
+      {
+        return $user->abilities()->contains('administrate');
+      }
         return $user->abilities()->contains('edit_forum');
     }
 
     public function moveThreadsTo($user, Category $category): bool
     {
+      if (str_contains($category->title,'News') || str_contains($category->title,'Neuigkeiten'))
+      {
+        return $user->abilities()->contains('administrate');
+      }
         return $user->abilities()->contains('edit_forum');
     }
 
     public function lockThreads($user, Category $category): bool
     {
+      if (str_contains($category->title,'News') || str_contains($category->title,'Neuigkeiten'))
+      {
+        return $user->abilities()->contains('administrate');
+      }
         return $user->abilities()->contains('edit_forum');
     }
 
     public function pinThreads($user, Category $category): bool
     {
+      if (str_contains($category->title,'News') || str_contains($category->title,'Neuigkeiten'))
+      {
+        return $user->abilities()->contains('administrate');
+      }
         return $user->abilities()->contains('edit_forum');
     }
 
     public function markThreadsAsRead($user, Category $category): bool
     {
-        return $user->abilities()->contains('edit_forum');
+        return true;
     }
 
     public function view($user, Category $category): bool
@@ -71,11 +95,19 @@ class CategoryPolicy
 
     public function delete($user, Category $category): bool
     {
+      if (str_contains($category->title,'News') || str_contains($category->title,'Neuigkeiten'))
+      {
         return $user->abilities()->contains('administrate');
+      }
+        return $user->abilities()->contains('edit_forum');
     }
 
     public function restore($user, Category $category): bool
     {
+      if (str_contains($category->title,'News') || str_contains($category->title,'Neuigkeiten'))
+      {
         return $user->abilities()->contains('administrate');
+      }
+        return $user->abilities()->contains('edit_forum');
     }
 }
