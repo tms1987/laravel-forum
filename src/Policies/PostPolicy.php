@@ -11,7 +11,7 @@ class PostPolicy
     {
 
       //Only admins can edit admins posts
-      if (($post->author()->abilities()->contains('administrate')) && !($user->abilities()->contains('administrate'))) {
+      if (($post->author->abilities()->contains('administrate')) && !($user->abilities()->contains('administrate'))) {
         return false;
       }
 
