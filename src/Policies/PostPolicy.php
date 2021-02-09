@@ -10,7 +10,9 @@ class PostPolicy
     public function edit($user, Post $post): bool
     {
 
-ddd($post);
+      if ($post->relations()->author()->abilities()->contains('administrate')) {
+        return false;
+      }
 
       if ($user->abilities()->contains('edit_forum')) { return true;}
         return $user->getKey() === $post->author_id;
